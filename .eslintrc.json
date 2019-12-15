@@ -64,6 +64,8 @@
   "env": {
     "jquery": true,
     "es6": true,
-    "commonjs": true
+    "commonjs": true,
+    "browser": true,
+    "node": true
   }
 }

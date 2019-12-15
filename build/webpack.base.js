@@ -26,6 +26,7 @@ let webpackConfig = {
     rules: [
       {
         test: /\.(png|jpg|jpeg|gif)$/,
+        exclude:/node_modules/,
         include: projectPath,
         use: {
           loader: 'url-loader',
@@ -33,7 +34,7 @@ let webpackConfig = {
             limit: assetsConfig.limit,
             outputPath: assetsConfig.outputPath + 'images',
             name: `[name]_v[hash:4].[ext]`,
-            publicPath: assetsConfig.publicPath + 'images',
+            publicPath: assetsConfig.publicPath == '' ? assetsConfig.publicPath : assetsConfig.publicPath + 'images',
             esModule: false,
           },
         }
@@ -41,12 +42,13 @@ let webpackConfig = {
       {
         test: /\.(woff)|(WOFF)|(svg)|(SVG)|(eot)|(EOT)|(ttf)|(TTF)$/,
         include: projectPath,
+        exclude:/node_modules/,
         use: [{
           loader: 'file-loader',
           options: {
             outputPath: assetsConfig.outputPath + 'font',
             name: `[name]_v[hash:4].[ext]`,
-            publicPath: assetsConfig.publicPath + 'font',
+            publicPath: assetsConfig.publicPath == '' ? assetsConfig.publicPath : assetsConfig.publicPath + 'font',
             esModule: false,
           }
         }]
@@ -54,6 +56,7 @@ let webpackConfig = {
       {
         test: /\.css$/,
         include: projectPath,
+        exclude:/node_modules/,
         use: [{
           loader: MiniCssExtractPlugin.loader,
           options: {
@@ -73,24 +76,36 @@ let webpackConfig = {
       {
         test: /\.js$/,
         include: projectPath,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
             plugins: [
               ['@babel/plugin-proposal-decorators', { 'legacy': true }],
-              ['@babel/plugin-proposal-class-properties', { 'loose': true }],
+              ['@babel/plugin-proposal-class-properties', { 'loose': true }],// class
               '@babel/plugin-transform-runtime'
             ]
           }
         }
       },
       {
+        test: /\.js$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: projectPath,
+        exclude: /plugin|node_modules/
+      },
+      {
         test: /\.html$/,
         include: projectPath,
+        exclude:/node_modules/,
         use: 'html-withimg-loader'
       },
     ]
+  },
+  resolve: {
+    modules: [path.resolve('node_modules')]
   }
 }
 

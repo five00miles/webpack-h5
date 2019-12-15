@@ -26,7 +26,7 @@ let projectConfig = {
   assets: {
     // 不超过5KB的图片转换成base64
     limit: false,
-    // 构建资源输出路径（用作cdn）默认为空
+    // 构建资源输出路径（用作cdn）默认为空  http://cdn-link.com/
     publicPath: ''
   },
   drop_console: false,//生产环境删除console

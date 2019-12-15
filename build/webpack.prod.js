@@ -29,9 +29,18 @@ module.exports = smart(webpackBase, {
         common: {
           name: 'common',
           chunks: 'all',
+          minSize: 0,
           minChunks: 2,
           enforce: true,
         },
+        vendor: {
+          priority: 1,
+          name: 'modules',
+          test: /node_modules/,
+          chunks: 'all',
+          minSize: 0,
+          minChunks: 2
+        }
       }
     }
   },
