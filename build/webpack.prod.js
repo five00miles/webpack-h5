@@ -24,7 +24,7 @@ module.exports = smart(webpackBase, {
       new OptimizeCSSAssetsPlugin({}),
     ],
     splitChunks: {
-      chunks: "all",
+      chunks: 'all',
       cacheGroups: {
         common: {
           name: 'common',

@@ -1,59 +1,34 @@
-import $ from 'jquery'
-// require('@babel/polyfill')
-require('./../../plugin/swiper/swiper.css')
-require('./../../plugin/swiper/swiper.js')
-require('./../index/index.scss')
+require('@babel/polyfill')
+require('./../../common/css/reset.css')
+// swiper
+import Swiper from 'swiper'
+import 'swiper/swiper.scss'
+//  lodash
+import _ from 'lodash'
+// mathjs
+import { round, e } from 'mathjs'
+// moment
+import moment from 'moment'
+moment.locale('zh-cn')
 
+// licia
+import { random, md5 } from 'licia'
 
-for (let i = 1; i < 3; i++) {
-  console.log(require('./../../images/pic' + i + '.png'))
-}
+require('./index.scss')
+require('./loading.scss')
 
-$(function () {
-  // $('body').html('哈哈哈')
-  console.log('哈哈哈', window.$)
-})
+let demoSwiper = new Swiper('.swiper-container', {})
 
+let a = _.chunk(['a', 'b', 'c', 'd'], 2)
+console.log('a', a)
 
+console.log('aa', _.now());
 
-async function foo() {
-  console.log('async working!')
-}
+let _math = round(e, 3)
+console.log('_math', _math)
 
-async function bar() {
-  await foo()
-  console.log('after foo')
-}
+let _time = moment().format();
+console.log('_time', _time)
 
-bar()
-
-
-let fun = () => {
-  let a = '测试let1'
-  console.log('a', a)
-}
-
-fun()
-
-class A {
-  constructor() {
-    this.a = 1
-  }
-}
-
-let classA = new A()
-console.log('classA', classA.a)
-
-import hotStr from './hot'
-console.log('hotStr', hotStr)
-
-if (module.hot) {
-  module.hot.accept('./hot', () => {
-    let _str = require('./hot')
-    console.log(_str.default)
-  })
-}
-
-$.get('/api/user',function(res){
-  console.log('res',res)
-})
+let _uuid = md5('licia')
+console.log('_uuid', _uuid)

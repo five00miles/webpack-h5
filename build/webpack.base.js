@@ -20,13 +20,13 @@ let webpackConfig = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: `css/[name]_v[hash:4].css`
-    }),
+    })
   ],
   module: {
     rules: [
       {
         test: /\.(png|jpg|jpeg|gif)$/,
-        exclude:/node_modules/,
+        exclude: /node_modules/,
         include: projectPath,
         use: {
           loader: 'url-loader',
@@ -42,7 +42,7 @@ let webpackConfig = {
       {
         test: /\.(woff)|(WOFF)|(svg)|(SVG)|(eot)|(EOT)|(ttf)|(TTF)$/,
         include: projectPath,
-        exclude:/node_modules/,
+        exclude: /node_modules/,
         use: [{
           loader: 'file-loader',
           options: {
@@ -56,7 +56,6 @@ let webpackConfig = {
       {
         test: /\.css$/,
         include: projectPath,
-        exclude:/node_modules/,
         use: [{
           loader: MiniCssExtractPlugin.loader,
           options: {
@@ -89,23 +88,23 @@ let webpackConfig = {
           }
         }
       },
-      {
-        test: /\.js$/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        include: projectPath,
-        exclude: /plugin|node_modules/
-      },
+      // {
+      //   test: /\.js$/,
+      //   loader: 'eslint-loader',
+      //   enforce: 'pre',
+      //   include: projectPath,
+      //   exclude: /plugin|node_modules/
+      // },
       {
         test: /\.html$/,
         include: projectPath,
-        exclude:/node_modules/,
+        exclude: /node_modules/,
         use: 'html-withimg-loader'
       },
     ]
   },
   resolve: {
-    modules: [path.resolve('node_modules')]
+    modules: [path.resolve('node_modules')],
   }
 }
 
