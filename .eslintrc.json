@@ -67,5 +67,8 @@
     "commonjs": true,
     "browser": true,
     "node": true
+  },
+  "globals": {
+    "lib":true
   }
 }

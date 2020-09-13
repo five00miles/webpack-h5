@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<style>
+  #loadingPage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+  }
+</style>
+
+<body>
+  <div id="loadingPage"></div>
+  <script>
+
+    var i = 0
+    var timer = setInterval(function () {
+      i++
+      console.log(i)
+      if (i > 10) clearInterval(timer)
+    }, 1000)
+
+    var ajaxUserPromise = function () {
+      return new Promise((resolve, reject) => {
+        $.ajax({
+          url: 'http://localhost:3000/user',
+          success: function (res) {
+            resolve(res)
+          },
+          error: function (err) {
+            reject(err)
+          }
+        })
+      })
+    }
+    var ajaxLotteryPromise = function (name) {
+      return new Promise((resolve, reject) => {
+        // throw new Error('报错了')
+        $.ajax({
+          url: 'http://localhost:3000/lottery',
+          data: { name: name },
+          success: function (res) {
+            resolve(res)
+          },
+          error: function (err) {
+            reject(err)
+          }
+        })
+      })
+    }
+    // ajaxUserPromise().then(res => {
+    //   return ajaxLotteryPromise(res.name)
+    // }).then(res => {
+    //   console.log(res)
+    // }).catch(err => {
+    //   console.log('err', err)
+    // })
+
+    let proAll = Promise.all([ajaxUserPromise(), ajaxLotteryPromise()]).then(res => {
+      console.log('res', res1)
+    }).catch(err => {
+      console.log('err', err)
+      console.log('至少有一个失败')
+    })
+
+    // try {
+    //   let proAll = Promise.allSettled([ajaxUser1Promise(), ajaxLotteryPromise()]).then(res => {
+    //     console.log('res', res)
+    //   })
+    // } catch{
+    //   console.log('报错了')
+    // }
+
+
+  </script>
+</body>
+
+</html>

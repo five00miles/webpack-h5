@@ -3,23 +3,25 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta content="yes" name="apple-touch-fullscreen">
+  <meta content="telephone=no,email=no" name="format-detection">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>index</title>
+  <!-- rem -->
+  <script>(function (win, lib) { var doc = win.document; var docEl = doc.documentElement; var dpr = 0; var scale = 0; var flexible = lib.flexible || (lib.flexible = {}); if (!dpr && !scale) { var isAndroid = win.navigator.appVersion.match(/android/gi); var isIPhone = win.navigator.appVersion.match(/iphone/gi); var devicePixelRatio = win.devicePixelRatio; if (isIPhone) { if (devicePixelRatio >= 3) { dpr = 3 } else { if (devicePixelRatio >= 2) { dpr = 2 } else { dpr = 1 } } if (dpr >= 2) { var fakeBody = document.createElement("body"); var testElement = document.createElement("div"); testElement.style.border = ".5px solid transparent"; fakeBody.appendChild(testElement); docEl.appendChild(fakeBody); if (testElement.offsetHeight === 1) { docEl.classList.add("hairlines") } docEl.removeChild(fakeBody) } } else { dpr = 1 } scale = 1 / dpr } function refreshRem() { console.log("w", docEl.clientWidth); var rem = docEl.clientWidth / 7.5; docEl.style.fontSize = rem + "px"; flexible.rem = rem } win.addEventListener("resize", refreshRem, false); win.addEventListener("pageshow", function (e) { if (e.persisted) { refreshRem() } }, false); refreshRem(); flexible.dpr = dpr; flexible.refreshRem = refreshRem; flexible.rem2px = function (d) { var val = parseFloat(d) * this.rem; if (typeof d === "string" && d.match(/rem$/)) { val += "px" } return val }; flexible.px2rem = function (d) { var val = parseFloat(d) / this.rem; if (typeof d === "string" && d.match(/px$/)) { val += "rem" } return val } })(window, window["lib"] || (window["lib"] = {}));</script>
+  <title>首页</title>
 </head>
 
 <body>
-  swiper
-  <img src="./../../images/pic1.png" alt="" width="100">
-  <div class="a"></div>
-  <h1>Swiper</h1>
-  <div class="swiper-container">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">Slide 1</div>
-      <div class="swiper-slide">Slide 2</div>
-      <div class="swiper-slide">Slide 3</div>
-    </div>
-  </div>
+  <div class="div1"></div>
+  <div id="div2"></div>
+  <img src="./../../images/pic1.png" class="pic1">
+  <img src="./../../images/sec/pic1.png" class="pic2">
+
+  <div class="loading"></div>
+
+  <script src="//res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
 </body>
 
 </html>

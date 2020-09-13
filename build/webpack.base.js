@@ -79,12 +79,16 @@ let webpackConfig = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env'],
-            plugins: [
-              ['@babel/plugin-proposal-decorators', { 'legacy': true }],
-              ['@babel/plugin-proposal-class-properties', { 'loose': true }],// class
-              '@babel/plugin-transform-runtime'
-            ]
+            presets: [
+              ['@babel/preset-env', {
+                targets: {
+                  browsers: ['defaults', 'not ie <= 7']
+                },
+                corejs: 2, // 新版本需要指定核⼼库版本 
+                useBuiltIns: "usage" // 按需注⼊
+              }]
+            ],
+            plugins: ['@babel/plugin-transform-runtime']
           }
         }
       },
@@ -105,33 +109,24 @@ let webpackConfig = {
   },
   resolve: {
     modules: [path.resolve('node_modules')],
+    alias: {
+      '@': projectPath
+    }
   }
 }
 
 APP.pages.map(page => {
   webpackConfig.entry[page.name] = `./src/${page.entry}`
   webpackConfig.plugins.push(new HtmlWebpackPlugin({
-    template: './src/' + page.html,
+    template: projectPath + '/' + page.html,
     filename: page.name + '.html',
     chunks: [page.name],
     minify: {
       removeAttributeQuotes: true,
       collapseWhitespace: true
-    }
+    },
   }))
 })
-
-// 全局引用变量
-if (APP.expose) {
-  APP.expose.map(node => {
-    webpackConfig.module.rules.push({
-      test: require.resolve(node.module_name),
-      use: node.name.map(name => {
-        return { loader: 'expose-loader', options: name }
-      })
-    })
-  })
-}
 
 // 设置打包路径
 if (APP.outputPath) {

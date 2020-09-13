@@ -1,0 +1,1 @@
+require('./js/es6.js')

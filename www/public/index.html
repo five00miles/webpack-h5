@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<style>
+  #loadingPage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+  }
+</style>
+
+<body>
+  <div id="loadingPage"></div>
+  <script>
+    // $.ajax({
+    //   url: 'http://localhost:3000/user',
+    //   type: 'GET',
+    //   dataType: 'json',
+    //   success: function (res) {
+    //     console.log('res', res)
+    //     if (res.errcode == 0) {
+    //       var _result = res.result
+    //       switch (_result.lotteryNum) {
+    //         case 0:
+    //           console.log('没抽过，调取lottery接口')
+    //           $.ajax({
+    //             url: 'http://localhost:3000/lottery',
+    //             type: 'GET',
+    //             dataType: 'json',
+    //             data: { name: _result.name },
+    //             success: function (res) {
+    //               console.log(res)
+    //             }
+    //           })
+    //           break
+    //         case 1:
+    //           console.log('抽了一次，调取lottery1接口')
+    //           $.ajax({
+    //             url: 'http://localhost:3000/lottery1',
+    //             type: 'GET',
+    //             dataType: 'json',
+    //             data: { name: _result.name },
+    //             success: function (res) {
+    //               console.log(res)
+    //             }
+    //           })
+    //           break
+    //         case 2:
+    //           console.log('抽了两次，调取lottery2接口')
+    //           $.ajax({
+    //             url: 'http://localhost:3000/lottery2',
+    //             type: 'GET',
+    //             dataType: 'json',
+    //             data: { name: _result.name },
+    //             success: function (res) {
+    //               console.log(res)
+    //             }
+    //           })
+    //           break
+    //         default:
+    //           alert('超出最大抽奖次数')
+    //           console.log('超出了最大抽奖次数，最大抽奖次数为2次')
+    //       }
+    //     }
+    //   }
+    // })
+
+
+    // var res1 = function () {
+    //   return $.ajax({ url: 'http://localhost:3000/user', type: 'GET', async: false, dataType: 'json' }).responseJSON
+    // }
+    // if (res1.errcode == 0) {
+    //   var _result = res.result
+    //   switch (_result.lotteryNum) {
+    //     case 0:
+    //       console.log('没抽过，调取lottery接口')
+    //       var res2 = function () {
+    //         return $.ajax({ url: 'http://localhost:3000/lottery', type: 'GET', async: false, dataType: 'json', data: { name: _result.name } }).responseJSON
+    //       }
+    //       break
+    //     case 1:
+    //       console.log('抽了一次，调取lottery1接口')
+    //       var res3 = function () {
+    //         return $.ajax({ url: 'http://localhost:3000/lottery1', type: 'GET', async: false, dataType: 'json', data: { name: _result.name } }).responseJSON
+    //       }
+    //       break
+    //     case 2:
+    //       console.log('抽了两次，调取lottery2接口')
+    //       var res4 = function () {
+    //         return $.ajax({ url: 'http://localhost:3000/lottery2', type: 'GET', async: false, dataType: 'json', data: { name: _result.name } }).responseJSON
+    //       }
+    //       break
+    //     default:
+    //       alert('超出最大抽奖次数')
+    //       console.log('超出了最大抽奖次数，最大抽奖次数为2次')
+    //   }
+    // }
+
+    // $.ajax({
+    //   url: '1',
+    //   success: function (res1) {
+    //     $.ajax({
+    //       url: '2',
+    //       data: { name: res1.name },
+    //       success: function (res2) {
+    //         $.ajax({
+    //           url: '3',
+    //           data: { name: res2.name },
+    //           success: function (res3) {
+    //             $.ajax({
+    //               url: '4',
+    //               data: { name: res3.name },
+    //               success: function (res4) {
+    //               }
+    //             })
+    //           }
+    //         })
+    //       }
+    //     })
+    //   }
+    // })
+    // var res1 = $.ajax({ url: '1' })
+    // var res2 = $.ajax({ url: '2', data: { name: res1.name } })
+    // var res3 = $.ajax({ url: '3', data: { name: res2.name } })
+    // var res4 = $.ajax({ url: '4', data: { name: res3.name } })
+
+
+    var i = 0
+    var timer = setInterval(function () {
+      i++
+      // console.log(i)
+      if (i > 10) clearInterval(timer)
+    }, 1000)
+
+    // $('#loadingPage').fadeIn(0, function () { console.log('加载页淡入') })	// 淡入加载页面，优化用户体验
+    // $.ajax({
+    //   url: 'http://localhost:3000/user',
+    //   async: true,
+    //   complete: function () { $('#loadingPage').fadeOut(0, function () { console.log('加载页淡出') }) }	// 请求完成，淡出加载页面
+    // })
+
+    // $('#loadingPage').fadeIn(0, function () { console.log('加载页淡入') })	// 淡入加载页面，优化用户体验
+    // var res = (function () { return $.ajax({ url: 'http://localhost:3000/user', async: false }).responseJSON })()
+    // $('#loadingPage').fadeOut(0, function () { console.log('加载页淡出') })	// 淡出加载页面
+
+
+    // var ajaxUserPromise = function () {
+    //   return new Promise((resolve, reject) => {
+    //     $.ajax({
+    //       url: 'http://localhost:3000/user',
+    //       success: function (res) {
+    //         resolve(res)
+    //       },
+    //       fail: function (err) {
+    //         reject(err)
+    //       }
+    //     })
+    //   })
+    // }
+    // var ajaxLotteryPromise = function (name) {
+    //   return new Promise((resolve, reject) => {
+    //     $.ajax({
+    //       url: 'http://localhost:3000/lottery',
+    //       data: { name: name },
+    //       success: function (res) {
+    //         resolve(res)
+    //       },
+    //       fail: function (err) {
+    //         reject(err)
+    //       }
+    //     })
+    //   })
+    // }
+    // var ajaxLotteryPromise1 = function (name) {
+    //   return new Promise((resolve, reject) => {
+    //     $.ajax({
+    //       url: 'http://localhost:3000/lottery1',
+    //       data: { name: name },
+    //       success: function (res) {
+    //         resolve(res)
+    //       },
+    //       fail: function (err) {
+    //         reject(err)
+    //       }
+    //     })
+    //   })
+    // }
+    // var ajaxLotteryPromise2 = function (name) {
+    //   return new Promise((resolve, reject) => {
+    //     $.ajax({
+    //       url: 'http://localhost:3000/lottery2',
+    //       data: { name: name },
+    //       success: function (res) {
+    //         resolve(res)
+    //       },
+    //       fail: function (err) {
+    //         reject(err)
+    //       }
+    //     })
+    //   })
+    // }
+
+    // ajaxUserPromise().then(res => {
+    //   console.log('promise res=', res)
+    //   if (res.errcode == 0) {
+    //     var _result = res.result
+    //     switch (_result.lotteryNum) {
+    //       case 0:
+    //         ajaxLotteryPromise(_result.name).then(res => {
+    //           console.log('没抽过，调取lottery接口')
+    //         })
+    //         break
+    //       case 1:
+    //         ajaxLotteryPromise1(_result.name).then(res => {
+    //           console.log('没抽过，调取lottery1接口')
+    //         })
+    //         break
+    //       case 2:
+    //         ajaxLotteryPromise2(_result.name).then(res => {
+    //           console.log('没抽过，调取lottery2接口')
+    //         })
+    //         break
+    //       default:
+    //         alert('超出最大抽奖次数')
+    //         console.log('超出了最大抽奖次数，最大抽奖次数为2次')
+    //     }
+    //   }
+    // })
+
+
+    // var ajaxUser = function (success, fail) {
+    //   $.ajax({
+    //     url: 'http://localhost:3000/user',
+    //     success: function (res) {
+    //       success(res)
+    //     },
+    //     fail: function (err) {
+    //       fail(err)
+    //     }
+    //   })
+    // }
+
+    // var ajaxLottery = function (success, fail, name) {
+    //   $.ajax({
+    //     url: 'http://localhost:3000/lottery',
+    //     data: { name: name },
+    //     success: function (res) {
+    //       success(res)
+    //     },
+    //     fail: function (err) {
+    //       fail(err)
+    //     }
+    //   })
+    // }
+
+    // var ajaxLottery1 = function (success, fail, name) {
+    //   $.ajax({
+    //     url: 'http://localhost:3000/lottery1',
+    //     data: { name: name },
+    //     success: function (res) {
+    //       success(res)
+    //     },
+    //     fail: function (err) {
+    //       fail(err)
+    //     }
+    //   })
+    // }
+
+    // var ajaxLottery2 = function (success, fail, name) {
+    //   $.ajax({
+    //     url: 'http://localhost:3000/lottery2',
+    //     data: { name: name },
+    //     success: function (res) {
+    //       success(res)
+    //     },
+    //     fail: function (err) {
+    //       fail(err)
+    //     }
+    //   })
+    // }
+
+    // ajaxUser(function (res) {
+    //   if (res.errcode == 0) {
+    //     var _result = res.result
+    //     switch (_result.lotteryNum) {
+    //       case 0:
+    //         ajaxLottery(function (res) {
+    //           console.log('调取lottery接口')
+    //         }, function (err) {
+    //           console.log(err)
+    //         }, _result.name)
+    //         break
+    //       case 1:
+    //         ajaxLottery1(function (res) {
+    //           console.log('调取lottery1接口')
+    //         }, function (err) {
+    //           console.log(err)
+    //         }, _result.name)
+    //         break
+    //       case 2:
+    //         ajaxLottery2(function (res) {
+    //           console.log('调取lottery2接口')
+    //         }, function (err) {
+    //           console.log(err)
+    //         }, _result.name)
+    //         break
+    //       default:
+    //         alert('超出最大抽奖次数')
+    //         console.log('超出了最大抽奖次数，最大抽奖次数为2次')
+    //     }
+    //   }
+    // })
+
+
+
+    // var timer1Promise = function () {
+    //   return new Promise((resolve, reject) => {
+    //     setTimeout(function () {
+    //       resolve(1)
+    //     }, 3000)
+    //   })
+    // }
+    // var timer2Promise = function () {
+    //   return new Promise((resolve, reject) => {
+    //     setTimeout(function () {
+    //       resolve(2)
+    //     }, 2000)
+    //   })
+    // }
+    // var timer3Promise = function () {
+    //   return new Promise((resolve, reject) => {
+    //     setTimeout(function () {
+    //       resolve(3)
+    //     }, 1000)
+    //   })
+    // }
+
+    // timer1Promise().then((res) => {
+    //   console.log(res)
+    //   return timer2Promise()
+    // }).then((res) => {
+    //   console.log(res)
+    //   return timer3Promise()
+    // }).then(res => {
+    //   console.log(res)
+    // })
+
+
+    function queue(arr) {
+      var sequence = Promise.resolve()
+      arr.forEach(function (item) {
+        sequence = sequence.then(item)
+      })
+      return sequence
+    }
+
+    function a() {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('a111')
+        }, 3000);
+      })
+    }
+    function b(data) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('b')
+        }, 2000);
+      })
+    }
+    function c(data) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('c')
+        }, 1000);
+      })
+    }
+
+    // queue([a, b, c])
+    //   .then(data => {
+    //     console.log(data)// abc
+    //   })
+
+    // Promise.allSettled([a(), b(), c()]).then(res => {
+    //   console.log('all', res)
+    // })
+
+
+    function getFoo() {
+      return new Promise(function (resolve, reject) {
+        resolve('foo');
+      });
+    }
+
+    const g = function* () {
+      try {
+        const foo = yield getFoo();
+        console.log(foo);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    function run(generator) {
+      const it = generator();
+
+      function go(result) {
+        if (result.done) return result.value;
+
+        return result.value.then(function (value) {
+          return go(it.next(value));
+        }, function (error) {
+          return go(it.throw(error));
+        });
+      }
+
+      go(it.next());
+    }
+
+    run(g);
+
+
+
+  </script>
+</body>
+
+</html>

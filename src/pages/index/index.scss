@@ -1,5 +1,26 @@
-.swiper-container {
+#div2 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+.div1 {
+  width: 3.75rem;
+  height: 1rem;
+}
+
+.pic1 {
+  width: 3rem;
+}
+.pic2 {
+  width: 3rem;
+}
+
+.loading {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 200px;
-  border: 1px solid blueviolet;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
 }

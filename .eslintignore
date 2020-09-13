@@ -1,0 +1,5 @@
+node_modules
+src/common
+dist
+compress
+www

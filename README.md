@@ -24,3 +24,31 @@ $ npm run dist 生产模式，默认地址 /dist
 ```
 $ node .\mock\server.js
 ```
+
+### 
+[字蜘](http://font-spider.org/)
+```
+$ npm install font-spider -g
+```
+
+
+### 笔记
+```html
+  <!-- <link rel="apple-touch-icon" href="./../../images/pic1.png"> -->
+  <!-- <link rel="apple-touch-icon-precomposed" href="./../../images/pic1.png" /> -->
+  <!-- <link rel="Shortcut Icon" href="./../../images/pic1.png" type="image/x-icon"> -->
+```
+
+### 一些库的说明
+(1) babel/polyfill 兼容低版本浏览器
+(2) @babel/plugin-transform-runtime  @babel/runtime
+  1. 提高代码重用性，缩小编译后的代码体积。
+  2. 防止污染全局作用域。（启用corejs配置）   babel-polyfill会将Promise等添加成全局变量，污染全局空间。
+
+
+
+### 一些第三方库
+关于promise
+[bluebird](http://bluebirdjs.com/docs/getting-started.html)
+[when](https://github.com/cujojs/when)
+[bluebird](http://bluebirdjs.com/docs/getting-started.html)
